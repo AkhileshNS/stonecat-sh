@@ -1,0 +1,48 @@
+---
+title: "Hello, World"
+date: "2026-09-06"
+description: "The first post — a quick tour of prose, media, and code snippets on this blog."
+---
+
+Welcome to the blog. This first post exists to show what a post looks like:
+regular prose, a bit of media, and a code snippet or two.
+
+## Prose and media
+
+Posts are written in **MDX**, so you get all of Markdown plus the ability to
+drop in React components when you need them. Standard formatting works as you'd
+expect — _emphasis_, [links](https://creativecommons.org/licenses/by/4.0/),
+lists, and so on.
+
+Images are rendered as plain `<img>` tags (image optimization is disabled for
+static export), so reference them from the `public/` directory:
+
+```md
+![Alt text](/images/example.png)
+```
+
+## Code snippets
+
+Fenced code blocks are highlighted at build time with Shiki via
+`rehype-pretty-code`:
+
+```ts title="greet.ts"
+export function greet(name: string): string {
+  return `Hello, ${name}!`;
+}
+
+console.log(greet("world"));
+```
+
+You can also highlight specific lines:
+
+```js {2}
+const items = [1, 2, 3];
+const doubled = items.map((n) => n * 2); // highlighted
+console.log(doubled);
+```
+
+## Licensing
+
+The words and media in this post are licensed under **CC BY 4.0**, while the
+code snippets above are licensed under **MIT**. See the site footer for details.
