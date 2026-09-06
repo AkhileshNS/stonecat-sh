@@ -11,7 +11,7 @@ import { getAllPostMeta, getPostBySlug, formatDate } from "@/lib/posts";
 import Giscus from "@/components/Giscus";
 
 const rehypePrettyCodeOptions: RehypePrettyCodeOptions = {
-  theme: { dark: "github-dark", light: "github-light" },
+  theme: "github-dark",
   keepBackground: false,
 };
 

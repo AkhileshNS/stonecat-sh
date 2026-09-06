@@ -1,22 +1,13 @@
 :root {
-  --bg: #ffffff;
-  --fg: #1a1a1a;
-  --muted: #666666;
-  --border: #e5e5e5;
-  --accent: #0969da;
-  --code-bg: #f6f8fa;
+  /* Dark-first, black & white theme. */
+  color-scheme: dark;
+  --bg: #000000;
+  --fg: #e8e8e8;
+  --muted: #9a9a9a;
+  --border: #262626;
+  --accent: #ffffff;
+  --code-bg: #0d0d0d;
   --max-width: 720px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0d1117;
-    --fg: #e6edf3;
-    --muted: #8b949e;
-    --border: #30363d;
-    --accent: #58a6ff;
-    --code-bg: #161b22;
-  }
 }
 
 * {
@@ -72,6 +63,20 @@ a:hover {
 
 .site-main {
   min-height: 60vh;
+}
+
+/* Home hero image */
+.home-hero {
+  margin: 0 0 40px;
+}
+
+.home-hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  /* Image background is pure black, so it blends into the page. */
+  background: #000;
 }
 
 /* Home feed */
@@ -185,32 +190,13 @@ a:hover {
   padding-top: 24px;
 }
 
-/* rehype-pretty-code dual-theme (light default, dark on preference) */
+/* rehype-pretty-code (single dark theme) */
 .prose pre {
   background-color: var(--code-bg);
-}
-
-.prose code[data-theme],
-.prose code[data-theme] span {
-  color: var(--shiki-light);
-}
-
-.prose pre:has(code[data-theme]) {
-  background-color: var(--shiki-light-bg);
-}
-
-@media (prefers-color-scheme: dark) {
-  .prose code[data-theme],
-  .prose code[data-theme] span {
-    color: var(--shiki-dark);
-  }
-
-  .prose pre:has(code[data-theme]) {
-    background-color: var(--shiki-dark-bg);
-  }
+  border: 1px solid var(--border);
 }
 
 /* Highlighted lines (via meta strings like ```js {1,3-4}) */
 .prose [data-highlighted-line] {
-  background-color: rgba(200, 200, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.08);
 }

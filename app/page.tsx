@@ -5,8 +5,16 @@ export default function HomePage() {
   const posts = getAllPostMeta();
 
   return (
-    <ul className="feed">
-      {posts.length === 0 && <p>No posts yet.</p>}
+    <>
+      <div className="home-hero">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/stonecat-sh.jpeg"
+          alt="A cat in an apron chiseling the letters SH into a large stone"
+        />
+      </div>
+      <ul className="feed">
+        {posts.length === 0 && <p>No posts yet.</p>}
       {posts.map((post) => (
         <li key={post.slug} className="feed-item">
           <h2>
@@ -18,8 +26,9 @@ export default function HomePage() {
           {post.description && (
             <p className="post-description">{post.description}</p>
           )}
-        </li>
-      ))}
-    </ul>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
