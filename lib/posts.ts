@@ -8,6 +8,8 @@ export interface PostFrontmatter {
   title: string;
   date: string;
   description?: string;
+  /** Optional hero image, e.g. "/images/<slug>/hero.jpeg". */
+  hero?: string;
 }
 
 export interface PostMeta extends PostFrontmatter {
@@ -40,6 +42,7 @@ function readPostFile(filename: string): Post {
     title: fm.title,
     date: fm.date,
     description: fm.description,
+    hero: fm.hero,
     content,
   };
 }

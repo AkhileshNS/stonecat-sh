@@ -52,6 +52,12 @@ export default async function PostPage({ params }: PageProps) {
 
   return (
     <article>
+      {post.hero && (
+        <div className="post-hero">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={post.hero} alt="" />
+        </div>
+      )}
       <header className="article-header">
         <h1>{post.title}</h1>
         <p className="post-meta">

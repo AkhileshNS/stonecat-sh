@@ -2,10 +2,10 @@
   /* Dark-first, black & white theme. */
   color-scheme: dark;
   --bg: #000000;
-  --fg: #e8e8e8;
-  --muted: #9a9a9a;
+  --fg: #c7c7c7;
+  --muted: #808080;
   --border: #262626;
-  --accent: #ffffff;
+  --accent: #dcdcdc;
   --code-bg: #0d0d0d;
   --max-width: 720px;
 }
@@ -22,10 +22,26 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--fg);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif;
-  line-height: 1.6;
-  font-size: 17px;
+  font-family: var(--font-shantell), "Segoe UI", -apple-system,
+    BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.7;
+  font-size: 18px;
+  /* Sticky footer: fill the viewport so main grows and pushes the footer down,
+     without taking it out of flow (no position: fixed). */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Handwritten display font for titles and headings. */
+h1,
+h2,
+h3,
+h4,
+.site-title {
+  font-family: var(--font-gloria), var(--font-shantell), cursive;
+  font-weight: 400; /* Gloria Hallelujah only ships a 400 weight; avoid faux-bold. */
+  line-height: 1.3;
 }
 
 a {
@@ -44,25 +60,53 @@ a:hover {
 }
 
 .site-header {
-  border-bottom: 1px solid var(--border);
   padding: 20px 0;
   margin-bottom: 40px;
 }
 
+/* Small hand-drawn divider: 32px wide, thick on the left, tapering thin on the
+   right (via clip-path), centered. Used instead of full-width rules. */
+.hand-rule,
+.site-header::after,
+.site-footer::before {
+  content: "";
+  display: block;
+  width: 128px;
+  height: 4px;
+  background: var(--muted);
+  clip-path: polygon(0 0, 100% 38%, 100% 62%, 0 100%);
+}
+
+.site-header::after {
+  margin: 20px auto 0;
+}
+
+.site-footer::before {
+  margin: 0 auto 24px;
+}
+
 .site-header .container {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
 }
 
 .site-title {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 22px;
   color: var(--fg);
 }
 
+.site-subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
 .site-main {
-  min-height: 60vh;
+  /* Grow to absorb any extra viewport height so the footer rests at the bottom. */
+  flex: 1 0 auto;
 }
 
 /* Home hero image */
@@ -77,6 +121,21 @@ a:hover {
   border-radius: 8px;
   /* Image background is pure black, so it blends into the page. */
   background: #000;
+  /* The art is near-white line work; muting it to match the toned-down text.
+     On a black page, lowering opacity blends the white lines toward gray. */
+  opacity: 0.85;
+}
+
+/* Post hero image */
+.post-hero {
+  margin: 0 0 32px;
+}
+
+.post-hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
 
 /* Home feed */
@@ -88,11 +147,21 @@ a:hover {
 
 .feed-item {
   padding: 24px 0;
-  border-bottom: 1px solid var(--border);
 }
 
 .feed-item:first-child {
   padding-top: 0;
+}
+
+/* Same hand-drawn taper as the header/footer rule, but full-width and thinner. */
+.feed-item::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2.5px;
+  margin-top: 24px;
+  background: var(--muted);
+  clip-path: polygon(0 0, 100% 38%, 100% 62%, 0 100%);
 }
 
 .feed-item h2 {
@@ -146,6 +215,12 @@ a:hover {
   line-height: 1.5;
 }
 
+.prose pre,
+.prose code {
+  font-family: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo,
+    Consolas, monospace;
+}
+
 /* Inline code */
 .prose :not(pre) > code {
   background: var(--code-bg);
@@ -167,7 +242,8 @@ a:hover {
   padding: 8px 16px;
   font-size: 13px;
   color: var(--muted);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo,
+    Consolas, monospace;
 }
 
 .prose [data-rehype-pretty-code-title] + pre {
@@ -177,7 +253,6 @@ a:hover {
 
 /* Footer */
 .site-footer {
-  border-top: 1px solid var(--border);
   margin-top: 60px;
   padding: 24px 0;
   color: var(--muted);
