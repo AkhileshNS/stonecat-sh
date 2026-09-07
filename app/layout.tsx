@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import { Gloria_Hallelujah, Shantell_Sans, JetBrains_Mono } from "next/font/google";
 import Footer from "@/components/Footer";
 import { siteConfig } from "@/lib/config";
@@ -60,6 +61,14 @@ export default function RootLayout({
           <div className="container">{children}</div>
         </main>
         <Footer />
+        {siteConfig.analytics.umamiWebsiteId && (
+          <Script
+            src={siteConfig.analytics.umamiSrc}
+            data-website-id={siteConfig.analytics.umamiWebsiteId}
+            strategy="afterInteractive"
+            defer
+          />
+        )}
       </body>
     </html>
   );

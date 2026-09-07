@@ -18,4 +18,13 @@ export const siteConfig = {
     category: "Announcements", // the Discussions category name
     categoryId: "DIC_kwDOUQlU184DFCB3", // e.g. "DIC_kwDO..."
   },
+
+  // Umami Cloud analytics. Paste your Website ID from the Umami dashboard
+  // (Settings -> Websites -> your site -> "Edit" -> "Website ID").
+  // Leave websiteId empty ("") to disable analytics entirely.
+  // If your account is in the EU region, change src to https://eu.umami.is/script.js
+  analytics: {
+    umamiWebsiteId: "7a969e78-08dd-4335-a3b3-65ab90df5469", // e.g. "12345678-90ab-cdef-1234-567890abcdef"
+    umamiSrc: "https://cloud.umami.is/script.js",
+  },
 } as const;
